@@ -1,0 +1,4 @@
+Cookies are stored locally
+
+
+Looking at this to try and figure out cookies at leaast initially: https://pythonbasics.org/flask-cookies/
