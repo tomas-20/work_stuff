@@ -1,5 +1,5 @@
 #Clyde "Thluffy" Sinclair
-#SoftDev  
+#SoftDev
 #skeleton/stub :: SQLITE3 BASICS
 #Dec 2020 -- The Time of the Rona
 
@@ -24,28 +24,28 @@ def readFile(file):
     return csv.DictReader(open(file))
 
 #all dicts will have the same headers since both csv files have the same headers
-def dict2SQ(dict, dict_name):
+def dict2SQ(dict_reader, dict_name):
     dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
     c.execute("CREATE TABLE IF NOT EXISTS " + dict_name + dict_headers)
 
-    dict_loop = dict.fieldnames
-    for item in dict:
+    dict_loop = dict_reader.fieldnames
+    for item in dict_reader:
         item_string = "('" + item[dict_loop[0]] + "'," + \
             item[dict_loop[1]] + "," + item[dict_loop[2]] + ")"
         c.execute("INSERT INTO "+ dict_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
-    
+
     db.commit()
 
-    
+
     # for item in dict:
-    #     item_string = "('" + dict[item][dict_loop[0]] + "', " 
+    #     item_string = "('" + dict[item][dict_loop[0]] + "', "
     #     + dict[item][dict_loop][1]+ "," + dict[item][dict_loop][2] +")"
     #     if debug:
     #         print(item_string)
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
-        
+
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + dict_name + dict_headers)
 
 def printDictioanry(dic):
@@ -81,8 +81,3 @@ if __name__ == "__main__":
     # db.commit()  # save changes
     # printDB("courses")
     db.close()  # close database
-    
-    
-
-
-
