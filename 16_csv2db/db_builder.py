@@ -29,9 +29,8 @@ def dict2SQ(dict_reader, dict_name):
     c.execute("CREATE TABLE IF NOT EXISTS " + dict_name + dict_headers)
 
     dict_loop = dict_reader.fieldnames
-    for item in dict_reader:
-        item_string = "('" + item[dict_loop[0]] + "'," + \
-            item[dict_loop[1]] + "," + item[dict_loop[2]] + ")"
+    for dict in dict_reader:
+        item_string = "('" + dict[dict_loop[0]] + "'," + dict[dict_loop[1]] + "," + dict[dict_loop[2]] + ")"
         c.execute("INSERT INTO "+ dict_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
