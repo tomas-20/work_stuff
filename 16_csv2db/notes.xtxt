@@ -1,0 +1,17 @@
+what is a relational database
+https://www.tutorialspoint.com/sqlite/sqlite_commands.htm
+need semicolon at end of line for sqlite commands when using in terminal (need to explore python)
+
+
+Important Basic Commands to Remember:
+#remember to use SEMICOLONS AFTER INPUTTING COMMANDS
+
+CREATE TABLE <tableName> (name TEXT, id INTEGER); #variable name then variable type
+
+INSERT INTO <tableName> VALUES; ("whose-it", 2); #like a dictionary
+
+SELECT * FROM <tableName>; #prints <tableName> values
+SELECT name FROM <tableName>; #prints value at key
+
+SELECT <key> FROM <tableName> WHERE <keyValue> = <value>; #searches by keyvalue
+
