@@ -32,7 +32,8 @@ def add_quotes(value, field_type):
     return value
 
 #all dicts will have the same headers since both csv files have the same headers
-def dict2SQ(dict_reader, table_name, field_types):
+def dict2SQ(dict_reader, db, table_name, field_types):
+    c = db.cursor()
     field_names = dict_reader.fieldnames;
     headers = map(append, field_names, field_types)
     header_string = list_to_string(headers)
@@ -56,14 +57,16 @@ def dict2SQ(dict_reader, table_name, field_types):
 
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)
 
-def printDB(tableName):
+def printDB(db, tableName):
+    c = db.cursor()
     c.execute("SELECT * FROM " + tableName)
     rows = c.fetchall()
+    print(len(rows))
     for item in rows:
         print(item)
 
-def dbExistence(table_name):
-
+def dbExistence(db, table_name):
+    c = db.cursor()
     c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table_name + "'")
     return(bool(c.fetchone()))
 #command = ""          # test SQL stmt in sqlite3 shell, save as string
@@ -72,17 +75,15 @@ def dbExistence(table_name):
 #==========================================================
 
 if __name__ == "__main__":
-    DB_FILE= "discobandit.db"
-    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-    c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
+    discobandit = sqlite3.connect("discobandit.db") #open if file exists, otherwise create
     rosterDict = readFile("students.csv")
-    dict2SQ(rosterDict, "roster", ["TEXT", "INTEGER", "INTEGER"])
+    dict2SQ(rosterDict, discobandit, "roster", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
-    printDB("roster")
-    print(dbExistence("roster"))
-    print(dbExistence("cheese"))
+    printDB(discobandit, "roster")
+    print(dbExistence(discobandit, "roster"))
+    print(dbExistence(discobandit, "cheese"))
     # coursesDict = readFile('courses.csv')
     # dict2SQ(coursesDict, "courses")
     # db.commit()  # save changes
     # printDB("courses")
-    db.close()  # close database
+    discobandit.close()  # close database
