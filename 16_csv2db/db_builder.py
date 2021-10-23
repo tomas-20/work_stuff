@@ -27,12 +27,15 @@ def get_dict_items(dic, fieldnames):
     output = []
     for i in fieldnames:
         output.append(dic[i])
-    output[0] = "'" + output[0] + "'"
     return output
 def list_to_string(lst):
     return "(" + ", ".join(lst) + ")"
 def append(a, b):
     return a + " " + b
+def add_quotes(value, field_type):
+    if field_type == "TEXT":
+        return "'" + value + "'"
+    return value
 
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, table_name, field_types):
@@ -40,7 +43,7 @@ def dict2SQ(dict_reader, table_name, field_types):
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + table_headers)
     
     for dic in dict_reader:
-        item_string = list_to_string(get_dict_items(dic, dict_reader.fieldnames))
+        item_string = list_to_string(map(add_quotes, get_dict_items(dic, dict_reader.fieldnames), field_types))
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
         if debug:
             print(item_string)
