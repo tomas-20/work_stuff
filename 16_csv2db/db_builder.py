@@ -29,13 +29,13 @@ def get_dict_items(dic, fieldnames):
         output.append(dic[i])
     return output
 #all dicts will have the same headers since both csv files have the same headers
-def dict2SQ(dict_reader, dict_name):
+def dict2SQ(dict_reader, table_name):
     dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
-    c.execute("CREATE TABLE IF NOT EXISTS " + dict_name + dict_headers)
+    c.execute("CREATE TABLE IF NOT EXISTS " + table_name + dict_headers)
     
     for dict in dict_reader:
         item_string = "('" + ", ".join(get_dict_items(dic, dict_reader.fieldnames)) + ")"
-        c.execute("INSERT INTO "+ dict_name +" VALUES "+item_string+";")
+        c.execute("INSERT INTO "+ table_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
 
@@ -49,7 +49,7 @@ def dict2SQ(dict_reader, dict_name):
     #         print(item_string)
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
 
-    #c.execute("CREATE TABLE [IF NOT EXISTS] " + dict_name + dict_headers)
+    #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + dict_headers)
 
 def printDB(tableName):
     c.execute("SELECT * FROM " + tableName)
@@ -57,9 +57,9 @@ def printDB(tableName):
     for item in rows:
         print(item)
 
-def dbExistence(dict_name):
+def dbExistence(table_name):
 
-    c.execute("SELECT EXISTS(SELECT * FROM '"+dict_name+"')")
+    c.execute("SELECT EXISTS(SELECT * FROM '"+table_name+"')")
     exists = c.fetchone()[0]
     exists = exists == 1
     return(exists)
