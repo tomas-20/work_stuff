@@ -27,6 +27,7 @@ def get_dict_items(dic, fieldnames):
     output = []
     for i in fieldnames:
         output.append(dic[i])
+    output[0] = "'" + output[0] + "'"
     return output
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, table_name):
