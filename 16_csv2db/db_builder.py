@@ -59,10 +59,8 @@ def printDB(tableName):
 
 def dbExistence(table_name):
 
-    c.execute("SELECT EXISTS(SELECT * FROM '"+table_name+"')")
-    exists = c.fetchone()[0]
-    exists = exists == 1
-    return(exists)
+    c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table_name + "'")
+    return(bool(c.fetchone()))
 #command = ""          # test SQL stmt in sqlite3 shell, save as string
 #c.execute(command)    # run SQL statement
 
@@ -73,7 +71,8 @@ if __name__ == "__main__":
     #dict2SQ(rosterDict, "roster")
     #db.commit()  # save changes
     printDB("roster")
-    print(dbExistence('roster'))
+    print(dbExistence("roster"))
+    print(dbExistence("cheese"))
     # coursesDict = readFile('courses.csv')
     # dict2SQ(coursesDict, "courses")
     # db.commit()  # save changes
