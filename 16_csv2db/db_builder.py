@@ -23,9 +23,9 @@ def readFile(file):
     # returns file as a dictionary seperated by rows
     return csv.DictReader(open(file))
 
-def get_dict_items(dict, headers):
+def get_dict_items(dict, fieldnames):
     output = []
-    for i in headers:
+    for i in fieldnames:
         output.append(dict[i])
     return output
 #all dicts will have the same headers since both csv files have the same headers
