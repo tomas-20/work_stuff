@@ -23,6 +23,11 @@ def readFile(file):
     # returns file as a dictionary seperated by rows
     return csv.DictReader(open(file))
 
+def get_dict_items(dict, headers):
+    output = []
+    for i in headers:
+        output.append(dict[i])
+    return output
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, dict_name):
     dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
