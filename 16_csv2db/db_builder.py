@@ -6,12 +6,6 @@
 import sqlite3   #enable control of an sqlite database
 import csv       #facilitate CSV I/O
 
-
-DB_FILE="discobandit.db"
-
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
-debug = False
 #==========================================================
 
 
@@ -80,6 +74,11 @@ def dbExistence(table_name):
 #==========================================================
 
 if __name__ == "__main__":
+    DB_FILE="discobandit.db"
+
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
+    debug = False
     rosterDict = readFile("students.csv")
     dict2SQ(rosterDict, "roster", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
