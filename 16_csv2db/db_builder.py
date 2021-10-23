@@ -31,8 +31,8 @@ def get_dict_items(dic, fieldnames):
     return output
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, table_name):
-    dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
-    c.execute("CREATE TABLE IF NOT EXISTS " + table_name + dict_headers)
+    table_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
+    c.execute("CREATE TABLE IF NOT EXISTS " + table_name + table_headers)
     
     for dic in dict_reader:
         item_string = "(" + ", ".join(get_dict_items(dic, dict_reader.fieldnames)) + ")"
@@ -50,7 +50,7 @@ def dict2SQ(dict_reader, table_name):
     #         print(item_string)
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
 
-    #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + dict_headers)
+    #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)
 
 def printDB(tableName):
     c.execute("SELECT * FROM " + tableName)
