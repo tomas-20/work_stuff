@@ -43,8 +43,6 @@ def dict2SQ(dict_reader, table_name, field_types):
         quotified_items = map(add_quotes, items, field_types)
         item_string = list_to_string(quotified_items)
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
-        if debug:
-            print(item_string)
 
     db.commit()
 
@@ -74,11 +72,9 @@ def dbExistence(table_name):
 #==========================================================
 
 if __name__ == "__main__":
-    DB_FILE="discobandit.db"
-
+    DB_FILE= "discobandit.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
-    debug = False
     rosterDict = readFile("students.csv")
     dict2SQ(rosterDict, "roster", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
