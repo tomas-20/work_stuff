@@ -23,10 +23,10 @@ def readFile(file):
     # returns file as a dictionary seperated by rows
     return csv.DictReader(open(file))
 
-def get_dict_items(dict, fieldnames):
+def get_dict_items(dic, fieldnames):
     output = []
     for i in fieldnames:
-        output.append(dict[i])
+        output.append(dic[i])
     return output
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, dict_name):
@@ -34,7 +34,7 @@ def dict2SQ(dict_reader, dict_name):
     c.execute("CREATE TABLE IF NOT EXISTS " + dict_name + dict_headers)
     
     for dict in dict_reader:
-        item_string = "('" + ", ".join(get_dict_items(dict, dict_reader.fieldnames)) + ")"
+        item_string = "('" + ", ".join(get_dict_items(dic, dict_reader.fieldnames)) + ")"
         c.execute("INSERT INTO "+ dict_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
@@ -50,11 +50,6 @@ def dict2SQ(dict_reader, dict_name):
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
 
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + dict_name + dict_headers)
-
-def printDictioanry(dic):
-    for row in dic:
-        print(", ".join(row))
-
 
 def printDB(tableName):
     c.execute("SELECT * FROM " + tableName)
