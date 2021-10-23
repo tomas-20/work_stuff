@@ -18,10 +18,9 @@ def readFile(file):
     return csv.DictReader(open(file))
 
 def get_dict_items(dic, keys):
-    output = []
-    for key in keys:
-        output.append(dic[key])
-    return output
+    def get_item(key):
+        return dic[key]
+    return map(get_item, keys)
 def list_to_string(lst):
     return "(" + ", ".join(lst) + ")"
 def append(a, b):
@@ -61,7 +60,6 @@ def printDB(db, tableName):
     c = db.cursor()
     c.execute("SELECT * FROM " + tableName)
     rows = c.fetchall()
-    print(len(rows))
     for item in rows:
         print(item)
 
