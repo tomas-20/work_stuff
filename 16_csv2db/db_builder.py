@@ -24,7 +24,7 @@ def list_to_string(lst):
 def append(a, b):
     return a + " " + b
 
-def add_quotes(value, field_type):
+def add_format(value, field_type):
     if field_type == "TEXT":
         return "'" + value + "'"
     return value
@@ -39,7 +39,7 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     
     for dic in dict_reader:
         items = get_dict_items(dic, field_names)
-        quotified_items = map(add_quotes, items, field_types)
+        quotified_items = map(add_format, items, field_types)
         item_string = list_to_string(quotified_items)
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
 
