@@ -41,7 +41,7 @@ def dict2SQ(dict_reader, table_name, field_types):
     
     for dic in dict_reader:
         item_string = list_to_string(get_dict_items(dic, dict_reader.fieldnames))
-        c.execute("INSERT INTO "+ table_name +" VALUES "+item_string+";")
+        c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
         if debug:
             print(item_string)
 
