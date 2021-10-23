@@ -35,8 +35,8 @@ def append(a, b):
     return a + " " + b
 
 #all dicts will have the same headers since both csv files have the same headers
-def dict2SQ(dict_reader, table_name, header_types):
-    table_headers = list_to_string(map(append, dict_reader.fieldnames, header_types))
+def dict2SQ(dict_reader, table_name, field_types):
+    table_headers = list_to_string(map(append, dict_reader.fieldnames, field_types))
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + table_headers)
     
     for dic in dict_reader:
