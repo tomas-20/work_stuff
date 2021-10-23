@@ -39,12 +39,13 @@ def add_quotes(value, field_type):
 
 #all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, table_name, field_types):
-    headers = map(append, dict_reader.fieldnames, field_types)
+    field_names = dict_reader.fieldnames;
+    headers = map(append, field_names, field_types)
     header_string = list_to_string(headers)
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + header_string)
     
     for dic in dict_reader:
-        items = get_dict_items(dic, dict_reader.fieldnames)
+        items = get_dict_items(dic, field_names)
         quotified_items = map(add_quotes, items, field_types)
         item_string = list_to_string(quotified_items)
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
