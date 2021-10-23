@@ -17,10 +17,10 @@ def readFile(file):
     # returns file as a dictionary seperated by rows
     return csv.DictReader(open(file))
 
-def get_dict_items(dic, fieldnames):
+def get_dict_items(dic, keys):
     output = []
-    for i in fieldnames:
-        output.append(dic[i])
+    for key in keys:
+        output.append(dic[key])
     return output
 def list_to_string(lst):
     return "(" + ", ".join(lst) + ")"
