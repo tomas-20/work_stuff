@@ -21,10 +21,13 @@ def get_dict_items(dic, keys):
     def get_item(key):
         return dic[key]
     return map(get_item, keys)
+
 def list_to_string(lst):
     return "(" + ", ".join(lst) + ")"
+
 def append(a, b):
     return a + " " + b
+    
 def add_quotes(value, field_type):
     if field_type == "TEXT":
         return "'" + value + "'"
@@ -54,7 +57,7 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     #         print(item_string)
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
 
-    #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)
+    #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)g
 
 def printDB(db, tableName):
     c = db.cursor()
