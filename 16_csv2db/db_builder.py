@@ -33,7 +33,7 @@ def dict2SQ(dict_reader, table_name):
     dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + dict_headers)
     
-    for dict in dict_reader:
+    for dic in dict_reader:
         item_string = "('" + ", ".join(get_dict_items(dic, dict_reader.fieldnames)) + ")"
         c.execute("INSERT INTO "+ table_name +" VALUES "+item_string+";")
         if debug:
@@ -67,7 +67,7 @@ def dbExistence(table_name):
 #==========================================================
 
 if __name__ == "__main__":
-    rosterDict = readFile('students.csv')
+    rosterDict = readFile("students.csv")
     #dict2SQ(rosterDict, "roster")
     #db.commit()  # save changes
     printDB("roster")
