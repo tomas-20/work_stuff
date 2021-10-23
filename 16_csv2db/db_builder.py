@@ -32,10 +32,9 @@ def get_dict_items(dict, fieldnames):
 def dict2SQ(dict_reader, dict_name):
     dict_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
     c.execute("CREATE TABLE IF NOT EXISTS " + dict_name + dict_headers)
-
-    dict_loop = dict_reader.fieldnames
+    
     for dict in dict_reader:
-        item_string = "('" + dict[dict_loop[0]] + "'," + dict[dict_loop[1]] + "," + dict[dict_loop[2]] + ")"
+        item_string = "('" + ", ".join(get_dict_items(dict, dict_reader.fieldnames)) + ")"
         c.execute("INSERT INTO "+ dict_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
