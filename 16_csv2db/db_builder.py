@@ -13,10 +13,6 @@ import csv       #facilitate CSV I/O
 
 #code to read in roster info
 
-def readFile(file):
-    # returns file as a dictionary seperated by rows
-    return csv.DictReader(open(file))
-
 def get_dict_items(dic, keys):
     def get_item(key):
         return dic[key]
@@ -27,7 +23,7 @@ def list_to_string(lst):
 
 def append(a, b):
     return a + " " + b
-    
+
 def add_quotes(value, field_type):
     if field_type == "TEXT":
         return "'" + value + "'"
@@ -77,8 +73,9 @@ def dbExistence(db, table_name):
 
 if __name__ == "__main__":
     discobandit = sqlite3.connect("discobandit.db") #open if file exists, otherwise create
-    rosterDict = readFile("students.csv")
-    dict2SQ(rosterDict, discobandit, "roster", ["TEXT", "INTEGER", "INTEGER"])
+    with open("students.csv") as students:
+        rosterDict = csv.DictReader(students)
+        dict2SQ(rosterDict, discobandit, "roster", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
     printDB(discobandit, "roster")
     print(dbExistence(discobandit, "roster"))
@@ -88,3 +85,4 @@ if __name__ == "__main__":
     # db.commit()  # save changes
     # printDB("courses")
     discobandit.close()  # close database
+    
