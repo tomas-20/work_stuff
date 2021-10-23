@@ -29,13 +29,18 @@ def get_dict_items(dic, fieldnames):
         output.append(dic[i])
     output[0] = "'" + output[0] + "'"
     return output
+def list_to_string(lst):
+    return "(" + ", ".join(lst) + ")"
+def append(a, b):
+    return a + " " + b
+
 #all dicts will have the same headers since both csv files have the same headers
-def dict2SQ(dict_reader, table_name):
-    table_headers = " (name TEXT, num0 INTEGER, num1 INTEGER)"
-    c.execute("CREATE TABLE IF NOT EXISTS " + table_name + table_headers)
+def dict2SQ(dict_reader, table_name, header_types):
+    table_headers = list_to_string(map(append, dict_reader.fieldnames, header_types))
+    c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + table_headers)
     
     for dic in dict_reader:
-        item_string = "(" + ", ".join(get_dict_items(dic, dict_reader.fieldnames)) + ")"
+        item_string = list_to_string(get_dict_items(dic, dict_reader.fieldnames))
         c.execute("INSERT INTO "+ table_name +" VALUES "+item_string+";")
         if debug:
             print(item_string)
@@ -69,7 +74,7 @@ def dbExistence(table_name):
 
 if __name__ == "__main__":
     rosterDict = readFile("students.csv")
-    dict2SQ(rosterDict, "roster")
+    dict2SQ(rosterDict, "roster", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
     printDB("roster")
     print(dbExistence("roster"))
