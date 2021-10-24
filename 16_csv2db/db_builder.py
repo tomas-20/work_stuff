@@ -82,15 +82,10 @@ if __name__ == "__main__":
     with open("courses.csv") as courses:
         gradebook_reader = csv.DictReader(courses)
         dict2SQ(gradebook_reader, discobandit, "gradebook", ["TEXT", "INTEGER", "INTEGER"])
-    #db.commit()  # save changes
     print("roster:")
     printDB(discobandit, "roster")
     print("gradebook:")
     printDB(discobandit, "gradebook")
     print("cheese:")
     printDB(discobandit, "cheese")
-    # coursesDict = readFile('courses.csv')
-    # dict2SQ(coursesDict, "courses")
-    # db.commit()  # save changes
-    # printDB("courses")
     discobandit.close()  # close database
