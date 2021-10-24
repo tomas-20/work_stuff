@@ -76,9 +76,19 @@ if __name__ == "__main__":
     with open("students.csv") as students:
         roster_reader = csv.DictReader(students)
         dict2SQ(roster_reader, discobandit, "roster", ["TEXT", "INTEGER", "INTEGER"])
+    with open("courses.csv") as courses:
+        gradebook_reader = csv.DictReader(courses)
+        dict2SQ(gradebook_reader, discobandit, "gradebook", ["TEXT", "INTEGER", "INTEGER"])
     #db.commit()  # save changes
+    print("roster:")
     printDB(discobandit, "roster")
+    print("gradebook:")
+    printDB(discobandit, "gradebook")
+    print("roster exists:")
     print(dbExistence(discobandit, "roster"))
+    print("gradebook exists:")
+    print(dbExistence(discobandit, "gradebook"))
+    print("cheese exists:")
     print(dbExistence(discobandit, "cheese"))
     # coursesDict = readFile('courses.csv')
     # dict2SQ(coursesDict, "courses")
