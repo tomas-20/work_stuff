@@ -76,16 +76,19 @@ def dbExistence(db, table_name):
 
 if __name__ == "__main__":
     discobandit = sqlite3.connect("discobandit.db") #open if file exists, otherwise create
+
     with open("students.csv") as students:
         roster_reader = csv.DictReader(students)
         dict2SQ(roster_reader, discobandit, "roster", ["TEXT", "INTEGER", "INTEGER"])
     with open("courses.csv") as courses:
         gradebook_reader = csv.DictReader(courses)
         dict2SQ(gradebook_reader, discobandit, "gradebook", ["TEXT", "INTEGER", "INTEGER"])
+
     print("roster:")
     printDB(discobandit, "roster")
     print("gradebook:")
     printDB(discobandit, "gradebook")
     print("cheese:")
     printDB(discobandit, "cheese")
+
     discobandit.close()  # close database
