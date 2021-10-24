@@ -55,9 +55,9 @@ def dict2SQ(dict_reader, db, table_name, field_types):
 
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)g
 
-def printDB(db, tableName):
+def printDB(db, table_name):
     c = db.cursor()
-    c.execute("SELECT * FROM " + tableName)
+    c.execute("SELECT * FROM " + table_name)
     rows = c.fetchall()
     for row in rows:
         print(row)
