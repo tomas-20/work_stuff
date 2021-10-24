@@ -32,6 +32,7 @@ def add_format(value, field_type):
 def dict2SQ(dict_reader, db, table_name, field_types):
     c = db.cursor()
     field_names = dict_reader.fieldnames;
+
     headers = map(append, field_names, field_types)
     header_string = list_to_string(headers)
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + header_string)
