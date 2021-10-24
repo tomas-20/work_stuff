@@ -36,11 +36,11 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     headers = map(append, field_names, field_types)
     header_string = list_to_string(headers)
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + header_string)
-    
+
     for dic in dict_reader:
         items = get_dict_items(dic, field_names)
-        quotified_items = map(add_format, items, field_types)
-        item_string = list_to_string(quotified_items)
+        formatted_items = map(add_format, items, field_types)
+        item_string = list_to_string(formatted_items)
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
 
     db.commit()
@@ -85,4 +85,3 @@ if __name__ == "__main__":
     # db.commit()  # save changes
     # printDB("courses")
     discobandit.close()  # close database
-    
