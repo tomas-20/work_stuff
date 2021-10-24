@@ -56,11 +56,14 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)g
 
 def printDB(db, table_name):
-    c = db.cursor()
-    c.execute("SELECT * FROM " + table_name)
-    rows = c.fetchall()
-    for row in rows:
-        print(row)
+    if dbExistence(db, table_name):
+        c = db.cursor()
+        c.execute("SELECT * FROM " + table_name)
+        rows = c.fetchall()
+        for row in rows:
+            print(row)
+    else:
+        print("table '" + table_name + "' does not exist")
 
 def dbExistence(db, table_name):
     c = db.cursor()
@@ -84,12 +87,8 @@ if __name__ == "__main__":
     printDB(discobandit, "roster")
     print("gradebook:")
     printDB(discobandit, "gradebook")
-    print("roster exists:")
-    print(dbExistence(discobandit, "roster"))
-    print("gradebook exists:")
-    print(dbExistence(discobandit, "gradebook"))
-    print("cheese exists:")
-    print(dbExistence(discobandit, "cheese"))
+    print("cheese:")
+    printDB(discobandit, "cheese")
     # coursesDict = readFile('courses.csv')
     # dict2SQ(coursesDict, "courses")
     # db.commit()  # save changes
