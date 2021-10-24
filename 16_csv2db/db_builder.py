@@ -29,7 +29,6 @@ def add_format(value, field_type):
         return "'" + value + "'"
     return value
 
-#all dicts will have the same headers since both csv files have the same headers
 def dict2SQ(dict_reader, db, table_name, field_types):
     c = db.cursor()
     field_names = dict_reader.fieldnames;
