@@ -13,11 +13,6 @@ import csv       #facilitate CSV I/O
 
 #code to read in roster info
 
-def get_dict_items(dic, keys):
-    def get_item(key):
-        return dic[key]
-    return map(get_item, keys)
-
 def list_to_string(lst):
     return "(" + ", ".join(lst) + ")"
 
@@ -38,7 +33,7 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + header_string)
 
     for dic in dict_reader:
-        items = get_dict_items(dic, field_names)
+        items = map(dic.get, field_names)
         formatted_items = map(add_format, items, field_types)
         item_string = list_to_string(formatted_items)
         c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
