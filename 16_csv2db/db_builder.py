@@ -59,8 +59,8 @@ def printDB(db, tableName):
     c = db.cursor()
     c.execute("SELECT * FROM " + tableName)
     rows = c.fetchall()
-    for item in rows:
-        print(item)
+    for row in rows:
+        print(row)
 
 def dbExistence(db, table_name):
     c = db.cursor()
