@@ -33,19 +33,19 @@ def dict2SQ(dict_reader, db, table_name, field_types):
     c.execute("CREATE TABLE IF NOT EXISTS " + table_name + " " + header_string)
 
     for dic in dict_reader:
-        items = map(dic.get, field_names)
-        formatted_items = map(add_format, items, field_types)
-        item_string = list_to_string(formatted_items)
-        c.execute("INSERT INTO " + table_name + " VALUES " + item_string)
+        values = map(dic.get, field_names)
+        formatted_values = map(add_format, values, field_types)
+        value_string = list_to_string(formatted_values)
+        c.execute("INSERT INTO " + table_name + " VALUES " + value_string)
 
     db.commit()
 
 
-    # for item in dict:
-    #     item_string = "('" + dict[item][dict_loop[0]] + "', "
-    #     + dict[item][dict_loop][1]+ "," + dict[item][dict_loop][2] +")"
+    # for value in dict:
+    #     value_string = "('" + dict[value][dict_loop[0]] + "', "
+    #     + dict[value][dict_loop][1]+ "," + dict[value][dict_loop][2] +")"
     #     if debug:
-    #         print(item_string)
+    #         print(value_string)
         #c.execute("INSERT INTO roster VALUES ('whose-it', 2);")
 
     #c.execute("CREATE TABLE [IF NOT EXISTS] " + table_name + table_headers)g
