@@ -16,7 +16,7 @@ and to that I respond
 
 the other day a Noakai said
 "so the recursive fibonacci solution is pretty much just fancy iteration"
-and now that I think about it, his words were true
+and now that I think about it, his words are true
 so in normal scenarios, one would do recursion in racket
 cause it's easier there
 and they would do iteration in javascript
