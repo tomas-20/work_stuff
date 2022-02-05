@@ -1,0 +1,25 @@
+nothing notable has occurred
+so perhaps I shall explain myself here
+
+you might be thinking
+"Tomas what is wrong with you?
+ what are you doing with your fib-helper?
+ you know you can save yourself from some pointless addition right?
+ just return b when n = 1
+ don't wait until b shifts to a and n = 0"
+and to that I respond
+"well then I would have to account for when n = 0 in fib
+ and I thought the functions looked cleaner without such accounting
+ yah
+ perhaps I'll regret this decision tomorrow
+ and change it to the more efficient version then"
+
+the other day a Noakai said
+"so the recursive fibonacci solution is pretty much just fancy iteration"
+and now that I think about it, his words were true
+so in normal scenarios, one would do recursion in racket
+cause it's easier there
+and they would do iteration in javascript
+cause it's easier there
+at least for this problem
+and the factorial one too
