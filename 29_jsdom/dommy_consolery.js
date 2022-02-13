@@ -126,16 +126,16 @@ var gcditem = document.getElementById("div3");
 var fibchange = function() {
   let num = Math.floor(Math.random()*100) +1; //random number [0,100]
   console.log(num);
-  fibitem.innerHTML = fib(num);
+  output.innerHTML = fib(num);
 };
 var facchange = function() {
   let num = Math.floor(Math.random()*100) +1;
-  facitem.innerHTML = fact(num);
+  output.innerHTML = fact(num);
 };
 var gcdchange = function() {
   let num1 = Math.floor(Math.random()*100) +1;
   let num2 = Math.floor(Math.random()*100) +1;
-  gcditem.innerHTML = gcd(num1, num2);
+  output.innerHTML = gcd(num1, num2);
 };
 
 fibitem.addEventListener("click", fibchange);
