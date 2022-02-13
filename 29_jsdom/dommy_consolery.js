@@ -97,6 +97,19 @@ function fib(n) { //0, 1, 1, 2, 3, 5, 8
   }
 };
 
+function fib2Helper(n, a, b) {
+  if (n === 0) {
+    return a;
+  }
+  else {
+    return fib2Helper(n - 1, b, a + b);
+  }
+}
+
+function fib2(n) {
+  return fib2Helper(n, 0, 1);
+}
+
 function gcd(a, b) {
   if (a == b) return a; //gcd of same number is that number
 
@@ -125,7 +138,7 @@ var gcditem = document.getElementById("div3");
 
 var fibchange = function() {
   let num = parseInt(input.value);
-  output.innerHTML = fib(num);
+  output.innerHTML = fib2(num);
 };
 var facchange = function() {
   let num = parseInt(input.value);
