@@ -124,20 +124,19 @@ var facitem = document.getElementById("div2");
 var gcditem = document.getElementById("div3");
 
 var fibchange = function() {
-  let num = Math.floor(Math.random()*100) +1; //random number [0,100]
-  console.log(num);
+  let num = parseInt(input.value);
   output.innerHTML = fib(num);
 };
 var facchange = function() {
-  let num = Math.floor(Math.random()*100) +1;
+  let num = parseInt(input.value);
   output.innerHTML = fact(num);
 };
 var gcdchange = function() {
-  let num1 = Math.floor(Math.random()*100) +1;
-  let num2 = Math.floor(Math.random()*100) +1;
+  let num1 = parseInt(input.value);
+  let num2 = parseInt(input2.value);
   output.innerHTML = gcd(num1, num2);
 };
 
-fibitem.addEventListener("click", fibchange);
-facitem.addEventListener("click", facchange);
-gcditem.addEventListener("click", gcdchange);
+fibButton.addEventListener("click", fibchange);
+factButton.addEventListener("click", facchange);
+gcdButton.addEventListener("click", gcdchange);
