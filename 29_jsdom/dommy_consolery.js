@@ -131,11 +131,6 @@ var change = function() {
 
 elemento.addEventListener("click", change);
 
-
-var fibitem = document.getElementById("div1");
-var facitem = document.getElementById("div2");
-var gcditem = document.getElementById("div3");
-
 function getChange(func, inputElements) {
   return function() {
     let inputs = inputElements.map(i => parseInt(i.value));
