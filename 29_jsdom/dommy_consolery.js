@@ -136,35 +136,18 @@ var fibitem = document.getElementById("div1");
 var facitem = document.getElementById("div2");
 var gcditem = document.getElementById("div3");
 
-var fibchange = function() {
-  let num = parseInt(input.value);
-  if (isNaN(num)) {
-    output.innerHTML = "improper input";
+function getChange(func, inputElements) {
+  return function() {
+    let inputs = inputElements.map(i => parseInt(i.value));
+    if (inputs.some(isNaN)) {
+      output.innerHTML = "improper input";
+    }
+    else {
+      output.innerHTML = func.apply(null, inputs);
+    }
   }
-  else {
-    output.innerHTML = fib2(num);
-  }
-};
-var facchange = function() {
-  let num = parseInt(input.value);
-  if (isNaN(num)) {
-    output.innerHTML = "improper input";
-  }
-  else {
-    output.innerHTML = fact(num);
-  }
-};
-var gcdchange = function() {
-  let num1 = parseInt(input.value);
-  let num2 = parseInt(input2.value);
-  if (isNaN(num1) || isNaN(num2)) {
-    output.innerHTML = "improper input";
-  }
-  else {
-    output.innerHTML = gcd(num1, num2);
-  }
-};
+}
 
-fibButton.addEventListener("click", fibchange);
-factButton.addEventListener("click", facchange);
-gcdButton.addEventListener("click", gcdchange);
+fibButton.addEventListener("click", getChange(fib, [input]));
+factButton.addEventListener("click", getChange(fact, [input]));
+gcdButton.addEventListener("click", getChange(gcd, [input, input2]));
