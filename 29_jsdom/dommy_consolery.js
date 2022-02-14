@@ -138,16 +138,31 @@ var gcditem = document.getElementById("div3");
 
 var fibchange = function() {
   let num = parseInt(input.value);
-  output.innerHTML = fib2(num);
+  if (isNaN(num)) {
+    output.innerHTML = "improper input";
+  }
+  else {
+    output.innerHTML = fib2(num);
+  }
 };
 var facchange = function() {
   let num = parseInt(input.value);
-  output.innerHTML = fact(num);
+  if (isNaN(num)) {
+    output.innerHTML = "improper input";
+  }
+  else {
+    output.innerHTML = fact(num);
+  }
 };
 var gcdchange = function() {
   let num1 = parseInt(input.value);
   let num2 = parseInt(input2.value);
-  output.innerHTML = gcd(num1, num2);
+  if (isNaN(num1) || isNaN(num2)) {
+    output.innerHTML = "improper input";
+  }
+  else {
+    output.innerHTML = gcd(num1, num2);
+  }
 };
 
 fibButton.addEventListener("click", fibchange);
