@@ -51,6 +51,11 @@ function draw(e) {
   }
 }
 
+function clear(e) {
+  ctx.clearRect(0, 0, slate.width, slate.height);
+}
+
 shapeButton.addEventListener("click", toggleShape);
 typeButton.addEventListener("click", toggleType);
+clearButton.addEventListener("click", clear);
 slate.addEventListener("click", draw);
