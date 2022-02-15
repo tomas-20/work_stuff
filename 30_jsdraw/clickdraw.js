@@ -1,19 +1,56 @@
 var ctx = slate.getContext("2d");
 
-var mode = "rect";
+var shape = "rect";
+var type = "fill"
 
-function toggleMode(e) {
-  console.log("toggling");
-  if (mode === "rect") {
-    mode = "circ";
+function toggleShape(e) {
+  if (shape === "rect") {
+    shape = "circ";
   }
-  else {
-    mode = "rect";
+  else if (shape === "circ") {
+    shape = "rect";
+  }
+}
+
+function toggleType(e) {
+  if (type === "fill") {
+    type = "stroke";
+  }
+  else if (type === "stroke") {
+    type = "fill";
   }
 }
 
 function drawRect(e) {
-  ctx.fillRect(e.offsetX, e.offsetY, 10, 20);
+  let func;
+  if (type === "fill") {
+    ctx.fillRect(e.offsetX, e.offsetY, 50, 100);
+  }
+  else if (type === "stroke") {
+    ctx.strokeRect(e.offsetX, e.offsetY, 50, 100);
+  }
 }
 
-slate.addEventListener("click", drawRect);
+function drawCirc(e) {
+  ctx.beginPath();
+  ctx.arc(e.offsetX, e.offsetY, 50, 0, Math.PI * 2);
+  if (type === "fill") {
+    ctx.fill();
+  }
+  else if (type === "stroke") {
+    ctx.stroke();
+  }
+}
+
+function draw(e) {
+  if (shape === "rect") {
+    drawRect(e);
+  }
+  else {
+    drawCirc(e);
+  }
+}
+
+shapeButton.addEventListener("click", toggleShape);
+typeButton.addEventListener("click", toggleType);
+slate.addEventListener("click", draw);
