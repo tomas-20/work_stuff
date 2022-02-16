@@ -42,7 +42,18 @@ function drawCirc(e) {
   }
 }
 
+function rgb(r, g, b) {
+  return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+
+function getRgbValue(position, max) {
+  return Math.round(position * 255 / max);
+}
+
 function draw(e) {
+  let color = rgb(0, getRgbValue(e.offsetX, slate.width), getRgbValue(e.offsetY, slate.height));
+  ctx.fillStyle = color;
+  ctx.strokeStyle = color;
   if (shape === "rect") {
     drawRect(e);
   }
